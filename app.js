@@ -14,10 +14,16 @@ function createLI(text) {
     checkbox.type = 'checkbox';
     label.appendChild(checkbox);
     li.appendChild(label);
+    
+    // Add an edit button to each li
+    const editButton = document.createElement('button');
+    editButton.textContent = 'edit';
+    li.appendChild(editButton);
+    
     // Add a remove button to each li, that will delete the name 
-    const button = document.createElement('button');
-    button.textContent = 'remove';
-    li.appendChild(button);
+    const removeButton = document.createElement('button');
+    removeButton.textContent = 'remove';
+    li.appendChild(removeButton);
     return li; // need to return the li item 
 }
 
@@ -49,9 +55,23 @@ ul.addEventListener('change', (e) => {
 // Delegated Handler again - use parent to remove element - bubble up
 ul.addEventListener('click', (e) => {
     if(e.target.tagName === 'BUTTON') {
+        const button = e.target;
         const li = e.target.parentNode;
         const ul = li.parentNode;
-        ul.removeChild(li);
+        if (button.textContent === 'remove') {          
+              ul.removeChild(li);
+            }  else if (button.textContent === 'edit') {
+                
+            }
+         
     }
 });
+
+/* Edit names 
+    - Add Edit button
+    - Make Text field editable
+    - Add Save button   
+*/
+
+
 
