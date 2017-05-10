@@ -4,16 +4,9 @@ const input = form.querySelector('input');
 // Get reference to ul and add li items to it
 const ul = document.getElementById('invitedList'); // get ul
 
-// e holds event object
-form.addEventListener('submit', (e) => {
-    e.preventDefault(); // cancels browser's default submit behavior
-    const text = input.value;
-    input.value = ''; // clears form after submitting
-    
-
+function createLI(text) {
     const li = document.createElement('li'); // create list item   
     li.textContent = text;
-    
     // Label and Checkbox
     const label = document.createElement('label');
     label.textContent = 'Confirmed';
@@ -21,16 +14,26 @@ form.addEventListener('submit', (e) => {
     checkbox.type = 'checkbox';
     label.appendChild(checkbox);
     li.appendChild(label);
+    // Add a remove button to each li, that will delete the name 
+    const button = document.createElement('button');
+    button.textContent = 'remove';
+    li.appendChild(button);
+    return li; // need to return the li item 
+}
+
+
+// e holds event object
+form.addEventListener('submit', (e) => {
+    e.preventDefault(); // cancels browser's default submit behavior
+    const text = input.value;
+    input.value = ''; // clears form after submitting    
+    const li = createLI(text);
     ul.appendChild(li); // append li item   
-    
-    
-   
-    
 });
 
  // Add event listener to li items using event bubbling 
  // Event on one element, bubbles up to parent or other ancestors
- // AKA delegated handler
+ // (Delegated handler)
 
 ul.addEventListener('change', (e) => {
     const checkbox = event.target;
@@ -42,3 +45,13 @@ ul.addEventListener('change', (e) => {
          listItem.className = ''; 
     }
 });
+
+// Delegated Handler again - use parent to remove element - bubble up
+ul.addEventListener('click', (e) => {
+    if(e.target.tagName === 'BUTTON') {
+        const li = e.target.parentNode;
+        const ul = li.parentNode;
+        ul.removeChild(li);
+    }
+});
+
