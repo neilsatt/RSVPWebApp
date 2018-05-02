@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const mainDiv = document.querySelector('.main');
     // Get reference to ul and add li items to it
-    const ul = document.getElementById('invitedList'); // get ul
+    const ul = document.getElementById('invitedList'); 
 
     // Filter out guests section
     const div = document.createElement('div');
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* 
-     Function with utility functions to create and add LI items
+     Function with utility functions to create and add elements
 
   */
     function createLI(text) {  
@@ -96,12 +96,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
      // Add event listener to li items using event bubbling 
      // Event on one element, bubbles up to parent or other ancestors
-     // (Delegated handler)
-
+     // Delegated handler - attach event handlers to children
+     // Listening for a change event
+     // Will add styling (border and color), when checked 
     ul.addEventListener('change', (e) => {
         const checkbox = event.target;
         const checked = checkbox.checked;
-        const listItem = checkbox.parentNode.parentNode; // li is grandparent of checkbox, label is child of li item
+        // use parentNode twice
+        // li is grandparent of checkbox, label is child of li item
+        const listItem = checkbox.parentNode.parentNode; 
         if (checked) {
           listItem.className = 'responded';        
         } else {
@@ -113,8 +116,8 @@ document.addEventListener('DOMContentLoaded', () => {
     ul.addEventListener('click', (e) => {
         if(e.target.tagName === 'BUTTON') {
             const button = e.target;
-            const li = e.target.parentNode;
-            const ul = li.parentNode;
+            const li = e.target.parentNode; // get parent of clicked element
+            const ul = li.parentNode; // ul is the parent of a li
             if (button.textContent === 'remove') {          
                   ul.removeChild(li);
                 }  else if (button.textContent === 'edit') {
