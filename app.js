@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Select the form first, then the child
     const form = document.getElementById('registrar'); 
-    const input = form.querySelector('input'); 
+    const input = form.querySelector('input'); // get text entered
 
     const mainDiv = document.querySelector('.main');
     // Get reference to ul and add li items to it
@@ -45,10 +45,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
+  /* 
+     Function with utility functions to create and add LI items
 
-    function createLI(text) {
-        
-        
+  */
+    function createLI(text) {  
         // reusable function for creating elements
         function createElement(elementName,property, value) {
             const element = document.createElement(elementName);  // create an editable span
@@ -80,12 +81,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // e holds event object
+    /*
+        Add listener directly to Form
+        e holds event object
+
+    */
     form.addEventListener('submit', (e) => {
         e.preventDefault(); // cancels browser's default submit behavior
-        const text = input.value;
+        const text = input.value; // user input text
         input.value = ''; // clears form after submitting    
-        const li = createLI(text);
+        const li = createLI(text); // text and checkbox
         ul.appendChild(li); // append li item   
     });
 
