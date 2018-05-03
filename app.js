@@ -6,37 +6,41 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('registrar'); 
     const input = form.querySelector('input'); // get text entered
 
+    // reference to main div in app
     const mainDiv = document.querySelector('.main');
     // Get reference to ul and add li items to it
     const ul = document.getElementById('invitedList'); 
 
-    // Filter out guests section
+    // Checkbox/label for Filtering guests section
     const div = document.createElement('div');
     const filterLabel = document.createElement('label');
     const filterCheckBox = document.createElement('input');
 
-
-
-    // hide people who haven't responded
+    // hide people who haven't responded 
     filterLabel.textContent = "Hide those who haven't responded";
     filterCheckBox.type = 'checkbox';
+    // add label and checkbox to page
     div.appendChild(filterLabel);
     div.appendChild(filterCheckBox);
     mainDiv.insertBefore(div, ul);
 
+    // add the listener to the checkbox 
    filterCheckBox.addEventListener('change', (e) => {
     const isChecked = e.target.checked;
-    const lis = ul.children;
+    const lis = ul.children; // reference to list items
+  
     if(isChecked) {
       for (let i = 0; i < lis.length; i += 1) {
         let li = lis[i];
         if (li.className === 'responded') {
-          li.style.display = '';  
+          li.style.display = '';  // don't hide, or reset if it was hidden before
         } else {
-          li.style.display = 'none';                        
+          li.style.display = 'none';  //hide those who haven't confirmed                      
         }
       }
-    } else {
+    } 
+    // when checkbox isn't checked, all names should appear
+    else {
       for (let i = 0; i < lis.length; i += 1) {
         let li = lis[i];
         li.style.display = '';
