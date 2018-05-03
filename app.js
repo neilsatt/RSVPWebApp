@@ -118,6 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const button = e.target;
             const li = e.target.parentNode; // get parent of clicked element
             const ul = li.parentNode; // ul is the parent of a li
+            // remove button
             if (button.textContent === 'remove') {          
                   ul.removeChild(li);
                 }  else if (button.textContent === 'edit') {
@@ -125,6 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const span = li.firstElementChild;
                     const input = document.createElement('input');
                     input.type = 'text';
+                    // add existing name to edit field
                     input.value = span.textContent;
                     li.insertBefore(input, span);
                     li.removeChild(span);
