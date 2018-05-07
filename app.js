@@ -1,4 +1,4 @@
-// make sure entire DOM has loaded before JS code
+// Using document.addEventListener will make sure entire DOM has loaded before JS code
 // fallback in case js file is loaded first
 document.addEventListener('DOMContentLoaded', () => {
     
@@ -55,9 +55,16 @@ document.addEventListener('DOMContentLoaded', () => {
   */
     function createLI(text) {  
         // reusable function for creating elements
+        /*
+            elementName = name of an element (li, input, etc.)
+            property = name of prop (type)
+            value = (checkbox, radio, etc.)
+
+        */
         function createElement(elementName,property, value) {
             const element = document.createElement(elementName);  // create an editable span
-            element[property] = value; //dynamically access property
+            // bracket syntax to access property on element
+            element[property] = value; 
             return element;   
         }
         
